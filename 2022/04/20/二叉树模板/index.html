@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>二叉树模板 | Prism</title><meta name="keywords" content="二叉树"><meta name="author" content="KKKKKKY"><meta name="copyright" content="KKKKKKY"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="二叉树模板二叉树算法的设计的总路线：明确一个节点要做的事情，然后剩下的事抛给框架。 123456void traverse(TreeNode root) &amp;#123;    &#x2F;&#x2F; root 需要做什么？在这做。    &#x2F;&#x2F; 其他的不用 root 操心，抛给框架    traverse(root.left);    traverse(root.right);&amp;#125;  举两个简单的例子体会一下这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树模板">
+<meta property="og:url" content="https://prism-10297.github.io/2022/04/20/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A8%A1%E6%9D%BF/index.html">
+<meta property="og:site_name" content="Prism">
+<meta property="og:description" content="二叉树模板二叉树算法的设计的总路线：明确一个节点要做的事情，然后剩下的事抛给框架。 123456void traverse(TreeNode root) &amp;#123;    &#x2F;&#x2F; root 需要做什么？在这做。    &#x2F;&#x2F; 其他的不用 root 操心，抛给框架    traverse(root.left);    traverse(root.right);&amp;#125;  举两个简单的例子体会一下这">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/zhanfang.jpg">
+<meta property="article:published_time" content="2022-04-20T12:01:00.000Z">
+<meta property="article:modified_time" content="2022-04-20T13:51:08.512Z">
+<meta property="article:author" content="KKKKKKY">
+<meta property="article:tag" content="二叉树">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/zhanfang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://prism-10297.github.io/2022/04/20/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A8%A1%E6%9D%BF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '二叉树模板',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-20 21:51:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/prism.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/zhanfang.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Prism</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">二叉树模板</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-20T12:01:00.000Z" title="发表于 2022-04-20 20:01:00">2022-04-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-20T13:51:08.512Z" title="更新于 2022-04-20 21:51:08">2022-04-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E9%A2%84%E7%AE%97%E6%B3%95/">数据结构预算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="二叉树模板"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="二叉树模板"><a href="#二叉树模板" class="headerlink" title="二叉树模板"></a>二叉树模板</h3><p>二叉树算法的设计的总路线：明确一个节点要做的事情，然后剩下的事抛给框架。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">traverse</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="comment">// root 需要做什么？在这做。</span></span><br><span class="line">    <span class="comment">// 其他的不用 root 操心，抛给框架</span></span><br><span class="line">    traverse(root.left);</span><br><span class="line">    traverse(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>举两个简单的例子体会一下这个思路，热热身。</p>
+<p><code>1. 如何把二叉树所有的节点中的值加一？</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">plusOne</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">    root.val += <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    plusOne(root.left);</span><br><span class="line">    plusOne(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>2. 如何判断两棵二叉树是否完全相同？</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">isSameTree</span><span class="params">(TreeNode root1, TreeNode root2)</span> &#123;</span><br><span class="line">    <span class="comment">// 都为空的话，显然相同</span></span><br><span class="line">    <span class="keyword">if</span> (root1 == <span class="literal">null</span> &amp;&amp; root2 == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">// 一个为空，一个非空，显然不同</span></span><br><span class="line">    <span class="keyword">if</span> (root1 == <span class="literal">null</span> || root2 == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// 两个都非空，但 val 不一样也不行</span></span><br><span class="line">    <span class="keyword">if</span> (root1.val != root2.val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// root1 和 root2 该比的都比完了</span></span><br><span class="line">    <span class="keyword">return</span> isSameTree(root1.left, root2.left)</span><br><span class="line">        &amp;&amp; isSameTree(root1.right, root2.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>借助框架，上面这两个例子不难理解吧？如果可以理解，那么所有二叉树算法你都能解决。</p>
+<p>二叉搜索树（Binary Search Tree，简称 BST）是一种很常用的的二叉树。它的定义是：一个二叉树中，任意节点的值要大于等于左子树所有节点的值，且要小于等于右边子树的所有节点的值。</p>
+<p>如下就是一个符合定义的 BST：</p>
+<img src="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/1600680568-gbNFQp-file_1600680568458.png" style="zoom: 67%;" />
+
+<p>下面实现 BST 的基础操作：判断 BST 的合法性、增、删、查。其中“删”和“判断合法性”略微复杂。</p>
+<p><code>零、判断 BST 的合法性</code></p>
+<p>这里是有坑的哦，我们按照刚才的思路，每个节点自己要做的事不就是比较自己和左右孩子吗？看起来应该这样写代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">isValidBST</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (root.left != <span class="literal">null</span> &amp;&amp; root.val &lt;= root.left.val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (root.right != <span class="literal">null</span> &amp;&amp; root.val &gt;= root.right.val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> isValidBST(root.left)</span><br><span class="line">        &amp;&amp; isValidBST(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是这个算法出现了错误，BST 的每个节点应该要小于右边子树的所有节点，下面这个二叉树显然不是 BST，但是我们的算法会把它判定为 BST。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/1600680568-AOVcUs-file_1600680568465.png"></p>
+<p>出现错误，不要慌张，框架没有错，一定是某个细节问题没注意到。我们重新看一下 BST 的定义，root 需要做的不只是和左右子节点比较，而是要整个左子树和右子树所有节点比较。怎么办，鞭长莫及啊！</p>
+<p>这种情况，我们可以使用辅助函数，增加函数参数列表，在参数中携带额外信息，请看正确的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">isValidBST</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> isValidBST(root, <span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">boolean</span> <span class="title function_">isValidBST</span><span class="params">(TreeNode root, TreeNode min, TreeNode max)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (min != <span class="literal">null</span> &amp;&amp; root.val &lt;= min.val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (max != <span class="literal">null</span> &amp;&amp; root.val &gt;= max.val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> isValidBST(root.left, min, root) </span><br><span class="line">        &amp;&amp; isValidBST(root.right, root, max);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="一、在-BST-中查找一个数是否存在"><a href="#一、在-BST-中查找一个数是否存在" class="headerlink" title="一、在 BST 中查找一个数是否存在"></a>一、在 BST 中查找一个数是否存在</h4><p>根据我们的指导思想，可以这样写代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">isInBST</span><span class="params">(TreeNode root, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (root.val == target) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> isInBST(root.left, target)</span><br><span class="line">        || isInBST(root.right, target);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样写完全正确，充分证明了你的框架性思维已经养成。现在你可以考虑一点细节问题了：如何充分利用信息，把 BST 这个“左小右大”的特性用上？</p>
+<p>很简单，其实不需要递归地搜索两边，类似二分查找思想，根据 target 和 root.val 的大小比较，就能排除一边。我们把上面的思路稍稍改动：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">isInBST</span><span class="params">(TreeNode root, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (root.val == target)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (root.val &lt; target) </span><br><span class="line">        <span class="keyword">return</span> isInBST(root.right, target);</span><br><span class="line">    <span class="keyword">if</span> (root.val &gt; target)</span><br><span class="line">        <span class="keyword">return</span> isInBST(root.left, target);</span><br><span class="line">    <span class="comment">// root 该做的事做完了，顺带把框架也完成了，妙</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>于是，我们对原始框架进行改造，抽象出一套<code>针对 BST 的遍历框架：</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">BST</span><span class="params">(TreeNode root, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root.val == target)</span><br><span class="line">        <span class="comment">// 找到目标，做点什么</span></span><br><span class="line">    <span class="keyword">if</span> (root.val &lt; target) </span><br><span class="line">        BST(root.right, target);</span><br><span class="line">    <span class="keyword">if</span> (root.val &gt; target)</span><br><span class="line">        BST(root.left, target);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="二、在-BST-中插入一个数"><a href="#二、在-BST-中插入一个数" class="headerlink" title="二、在 BST 中插入一个数"></a>二、在 BST 中插入一个数</h4><p>对数据结构的操作无非遍历 + 访问，遍历就是“找”，访问就是“改”。具体到这个问题，插入一个数，就是先找到插入位置，然后进行插入操作。</p>
+<p>上一个问题，我们总结了 BST 中的遍历框架，就是“找”的问题。直接套框架，加上“改”的操作即可。一旦涉及“改”，函数就要返回 TreeNode 类型，并且对递归调用的返回值进行接收。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TreeNode <span class="title function_">insertIntoBST</span><span class="params">(TreeNode root, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">    <span class="comment">// 找到空位置插入新节点</span></span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">TreeNode</span>(val);</span><br><span class="line">    <span class="comment">// if (root.val == val)</span></span><br><span class="line">    <span class="comment">//     BST 中一般不会插入已存在元素</span></span><br><span class="line">    <span class="keyword">if</span> (root.val &lt; val) </span><br><span class="line">        root.right = insertIntoBST(root.right, val);</span><br><span class="line">    <span class="keyword">if</span> (root.val &gt; val) </span><br><span class="line">        root.left = insertIntoBST(root.left, val);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、在-BST-中删除一个数"><a href="#三、在-BST-中删除一个数" class="headerlink" title="三、在 BST 中删除一个数"></a>三、在 BST 中删除一个数</h4><p>这个问题稍微复杂，不过你有框架指导，难不住你。跟插入操作类似，先“找”再“改”，先把框架写出来再说：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">TreeNode <span class="title function_">deleteNode</span><span class="params">(TreeNode root, <span class="type">int</span> key)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root.val == key) &#123;</span><br><span class="line">        <span class="comment">// 找到啦，进行删除</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (root.val &gt; key) &#123;</span><br><span class="line">        root.left = deleteNode(root.left, key);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (root.val &lt; key) &#123;</span><br><span class="line">        root.right = deleteNode(root.right, key);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>找到目标节点了，比方说是节点 A，如何删除这个节点，这是难点。因为删除节点的同时不能破坏 BST 的性质。有三种情况，用图片来说明。</p>
+<p>情况 1：A 恰好是末端节点，两个子节点都为空，那么它可以当场去世了。</p>
+<img src="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/1600680568-eWmViP-file_1600680568466.png" style="zoom: 40%;" />
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (root.left == <span class="literal">null</span> &amp;&amp; root.right == <span class="literal">null</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+<p>情况 2：A 只有一个非空子节点，那么它要让这个孩子接替自己的位置。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/1600680568-CYFeXO-file_1600680568471.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 排除了情况 1 之后</span></span><br><span class="line"><span class="keyword">if</span> (root.left == <span class="literal">null</span>) <span class="keyword">return</span> root.right;</span><br><span class="line"><span class="keyword">if</span> (root.right == <span class="literal">null</span>) <span class="keyword">return</span> root.left;</span><br></pre></td></tr></table></figure>
+
+<p>情况 3：A 有两个子节点，麻烦了，为了不破坏 BST 的性质，A 必须找到左子树中最大的那个节点，或者右子树中最小的那个节点来接替自己。我们以第二种方式讲解。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/1600680568-kbexkC-file_1600680568474.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (root.left != <span class="literal">null</span> &amp;&amp; root.right != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="comment">// 找到右子树的最小节点</span></span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">minNode</span> <span class="operator">=</span> getMin(root.right);</span><br><span class="line">    <span class="comment">// 把 root 改成 minNode</span></span><br><span class="line">    root.val = minNode.val;</span><br><span class="line">    <span class="comment">// 转而去删除 minNode</span></span><br><span class="line">    root.right = deleteNode(root.right, minNode.val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>三种情况分析完毕，填入框架，简化一下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">TreeNode <span class="title function_">deleteNode</span><span class="params">(TreeNode root, <span class="type">int</span> key)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (root.val == key) &#123;</span><br><span class="line">        <span class="comment">// 这两个 if 把情况 1 和 2 都正确处理了</span></span><br><span class="line">        <span class="keyword">if</span> (root.left == <span class="literal">null</span>) <span class="keyword">return</span> root.right;</span><br><span class="line">        <span class="keyword">if</span> (root.right == <span class="literal">null</span>) <span class="keyword">return</span> root.left;</span><br><span class="line">        <span class="comment">// 处理情况 3</span></span><br><span class="line">        <span class="type">TreeNode</span> <span class="variable">minNode</span> <span class="operator">=</span> getMin(root.right);</span><br><span class="line">        root.val = minNode.val;</span><br><span class="line">        root.right = deleteNode(root.right, minNode.val);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (root.val &gt; key) &#123;</span><br><span class="line">        root.left = deleteNode(root.left, key);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (root.val &lt; key) &#123;</span><br><span class="line">        root.right = deleteNode(root.right, key);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">TreeNode <span class="title function_">getMin</span><span class="params">(TreeNode node)</span> &#123;</span><br><span class="line">    <span class="comment">// BST 最左边的就是最小的</span></span><br><span class="line">    <span class="keyword">while</span> (node.left != <span class="literal">null</span>) node = node.left;</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>删除操作就完成了。注意一下，这个删除操作并不完美，因为我们一般不会通过 root.val &#x3D; minNode.val 修改节点内部的值来交换节点，而是通过一系列略微复杂的链表操作交换 root 和 minNode 两个节点。因为具体应用中，val 域可能会很大，修改起来很耗时，而链表操作无非改一改指针，而不会去碰内部数据。</p>
+<p>但这里忽略这个细节，旨在突出 BST 基本操作的共性，以及借助框架逐层细化问题的思维方式。</p>
+<h4 id="四、最后总结"><a href="#四、最后总结" class="headerlink" title="四、最后总结"></a>四、最后总结</h4><p>通过这篇文章，你学会了如下几个技巧：</p>
+<ol>
+<li><p>二叉树算法设计的总路线：把当前节点要做的事做好，其他的交给递归框架，不用当前节点操心。</p>
+</li>
+<li><p>如果当前节点会对下面的子节点有整体影响，可以通过辅助函数增长参数列表，借助参数传递信息。</p>
+</li>
+<li><p>在二叉树框架之上，扩展出一套 BST 遍历框架：</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">BST</span><span class="params">(TreeNode root, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root.val == target)</span><br><span class="line">        <span class="comment">// 找到目标，做点什么</span></span><br><span class="line">    <span class="keyword">if</span> (root.val &lt; target) </span><br><span class="line">        BST(root.right, target);</span><br><span class="line">    <span class="keyword">if</span> (root.val &gt; target)</span><br><span class="line">        BST(root.left, target);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>掌握了 BST 的基本操作。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">KKKKKKY</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://prism-10297.github.io/2022/04/20/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A8%A1%E6%9D%BF/">https://prism-10297.github.io/2022/04/20/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A8%A1%E6%9D%BF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://prism-10297.github.io" target="_blank">Prism</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/zhanfang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/04/20/%E5%8F%8C%E6%8C%87%E9%92%88(%E9%93%BE%E8%A1%A8)/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/zhanfang.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">双指针(链表)</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/prism.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">KKKKKKY</div><div class="author-info__description">一个有趣的人</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Prism-10297"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Prism-10297" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:444062505@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.</span> <span class="toc-text">二叉树模板</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9C%A8-BST-%E4%B8%AD%E6%9F%A5%E6%89%BE%E4%B8%80%E4%B8%AA%E6%95%B0%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="toc-number">1.1.</span> <span class="toc-text">一、在 BST 中查找一个数是否存在</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9C%A8-BST-%E4%B8%AD%E6%8F%92%E5%85%A5%E4%B8%80%E4%B8%AA%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">二、在 BST 中插入一个数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9C%A8-BST-%E4%B8%AD%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">三、在 BST 中删除一个数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9C%80%E5%90%8E%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">四、最后总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/20/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A8%A1%E6%9D%BF/" title="二叉树模板"><img src="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/zhanfang.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二叉树模板"/></a><div class="content"><a class="title" href="/2022/04/20/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%A8%A1%E6%9D%BF/" title="二叉树模板">二叉树模板</a><time datetime="2022-04-20T12:01:00.000Z" title="发表于 2022-04-20 20:01:00">2022-04-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/20/%E5%8F%8C%E6%8C%87%E9%92%88(%E9%93%BE%E8%A1%A8)/" title="双指针(链表)"><img src="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/zhanfang.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="双指针(链表)"/></a><div class="content"><a class="title" href="/2022/04/20/%E5%8F%8C%E6%8C%87%E9%92%88(%E9%93%BE%E8%A1%A8)/" title="双指针(链表)">双指针(链表)</a><time datetime="2022-04-20T11:01:00.000Z" title="发表于 2022-04-20 19:01:00">2022-04-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/19/Redis/" title="Redis"><img src="https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/zhanfang.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis"/></a><div class="content"><a class="title" href="/2022/04/19/Redis/" title="Redis">Redis</a><time datetime="2022-04-19T12:30:49.000Z" title="发表于 2022-04-19 20:30:49">2022-04-19</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Prism-10297/picgoImg/img/zhanfang.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By KKKKKKY</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
